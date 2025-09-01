@@ -1,3 +1,5 @@
+## Compilador miniC
+
 **Alumno:** Daniel Aliaga Sánchez 
 
 ## Descripción
@@ -18,6 +20,7 @@ para un lenguaje de programación simplificado de C, utilizando las herramientas
     - minic: ejecutable final resultado compilar el proyecto con el comando "make".
     - spim: ejecutable simulador para ejecutar código MIPS.
     - Memoeria: fichero pdf que detalla la elaboración del proyecto.
+    - practicas2023_24_miniC: boletín de prácticas que describe los objetivos del proyecto.
     - pruebas/: directorio con entradas de prueba y sus salidas esperadas correspondientes para probar el correcto funcionamiento de cada parte del compilador:
       - Pruebas_léxico/: directorio con el analizador léxico y una serie de entradas y salidas de prueba:
         - lexico.l y lexico.h: codigo C que implementa el analizador léxico.
