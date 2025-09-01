@@ -1,0 +1,14 @@
+main Token: 1
+( Token: 9
+) Token: 10
+{ Token: 11
+var Token: 11
+Error léxico: Identificador identificadorDemasiadoLargooooooooooooooooooooooooooooooooooooooooooooooooooooooo excede el limite de caracteres (32). Linea: 2. 
+identificadorDemasiadoLargooooooooooooooooooooooooooooooooooooooooooooooooooooooo Token: 1
+= Token: 2
+Error léxico: Entero 9999999999999 fuera de rango (-2^31, 2^31 - 1). Linea: 2. 
+9999999999999 Token: 7
+; Token: 8
+* Error léxico: Carácter "?" no reconocido. Linea: 4.
+* Error léxico: Carácter "@" no reconocido. Linea: 6.
+} Token: 12

@@ -1,0 +1,34 @@
+declarations -> lambda
+expression -> ENTERO
+identifier -> IDEN ASIG expression
+identifier_list -> identifier
+declarations -> declarations VAR identifier_list PYCO
+statement_list -> lambda
+expression -> IDEN
+statement_list -> lambda
+expression -> IDEN
+statement_list -> lambda
+expression -> IDEN
+expression -> ENTERO
+expression -> expression REST expression
+statement -> IDEN ASIG expression PYCO
+statement_list -> statement_list statement
+print_item -> CAD
+print_list -> print_item
+expression -> IDEN
+print_item -> expression
+print_list -> print_list COMA print_item
+statement -> PRINT PARI print_list PARD PYCO
+statement_list -> statement_list statement
+statement -> LLAVI statement_list LLAVD
+statement -> IF PARI expression PARD statement
+statement_list -> statement_list statement
+expression -> IDEN
+expression -> ENTERO
+expression -> expression REST expression
+statement -> IDEN ASIG expression PYCO
+statement_list -> statement_list statement
+statement -> LLAVI statement_list LLAVD
+statement -> WHILE PARI expression PARD statement
+statement_list -> statement_list statement
+program -> IDEN PARI PARD LLAVI declarations statement_list LLAVD

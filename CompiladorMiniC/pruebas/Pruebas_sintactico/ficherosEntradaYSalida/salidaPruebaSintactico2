@@ -1,0 +1,12 @@
+declarations -> lambda
+statement_list -> lambda
+expression -> IDEN
+expression -> IDEN
+expression -> IDEN
+expression -> expression MULT expression
+expression -> expression SUMA expression
+expression -> IDEN
+expression -> expression SUMA expression
+statement -> IDEN ASIG expression PYCO
+statement_list -> statement_list statement
+program -> IDEN PARI PARD LLAVI declarations statement_list LLAVD

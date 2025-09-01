@@ -1,0 +1,10 @@
+main(){
+	var x=3;
+	while(x){
+		if(x){
+			x=x-1;
+			print("x: ",x);
+		}
+		x=x-1;
+	}
+}

@@ -1,0 +1,11 @@
+main(){
+	//comentario, debe ser ignorado var a;
+	/* comentario multilinea
+	   tambien debe ser ignorado
+	   print("No imprime");*/
+	var x;
+	read(x);
+	print(x);
+	while(x) x=x+1;
+	if(x) print("Hola");
+}

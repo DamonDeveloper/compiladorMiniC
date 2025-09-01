@@ -1,0 +1,1302 @@
+Estado 82 conflictos: 1 desplazamiento/reducción
+
+
+Gramática
+
+    0 $accept: program $end
+
+    1 $@1: %empty
+
+    2 program: $@1 IDEN PARI PARD LLAVI declarations statement_list LLAVD
+
+    3 $@2: %empty
+
+    4 declarations: declarations VAR $@2 identifier_list PYCO
+
+    5 $@3: %empty
+
+    6 declarations: declarations CONST $@3 identifier_list PYCO
+    7             | %empty
+
+    8 identifier_list: identifier
+    9                | identifier_list COMA identifier
+
+   10 identifier: IDEN
+   11           | IDEN ASIG expression
+
+   12 statement_list: statement_list statement
+   13               | %empty
+
+   14 statement: IDEN ASIG expression PYCO
+   15          | LLAVI statement_list LLAVD
+   16          | IF PARI expression PARD statement ELSE statement
+   17          | IF PARI expression PARD statement
+   18          | WHILE PARI expression PARD statement
+   19          | DO statement WHILE PARI relational PARD PYCO
+   20          | FOR PARI IDEN ASIG expression TO expression PYCO relational PARD statement
+   21          | PRINT PARI print_list PARD PYCO
+   22          | READ PARI read_list PARD PYCO
+
+   23 print_list: print_item
+   24           | print_list COMA print_item
+
+   25 print_item: expression
+   26           | CAD
+
+   27 read_list: IDEN
+   28          | read_list COMA IDEN
+
+   29 expression: expression SUMA expression
+   30           | expression REST expression
+   31           | expression MULT expression
+   32           | expression DIVI expression
+   33           | REST expression
+   34           | PARI expression PARD
+   35           | IDEN
+   36           | ENTERO
+
+   37 relational: expression GT expression
+   38           | expression GE expression
+   39           | expression LT expression
+   40           | expression LE expression
+   41           | relational AND relational
+   42           | relational OR relational
+   43           | expression
+
+
+Terminales con las reglas donde aparecen
+
+    $end (0) 0
+    error (256)
+    VAR (258) 4
+    CONST (259) 6
+    WHILE (260) 18 19
+    DO (261) 19
+    FOR (262) 20
+    TO (263) 20
+    IF (264) 16 17
+    ELSE (265) 16
+    PRINT (266) 21
+    READ (267) 22
+    PARI (268) 2 16 17 18 19 20 21 22 34
+    PARD (269) 2 16 17 18 19 20 21 22 34
+    LLAVI (270) 2 15
+    LLAVD (271) 2 15
+    PYCO (272) 4 6 14 19 20 21 22
+    COMA (273) 9 24 28
+    ASIG (274) 11 14 20
+    IDEN <lexema> (275) 2 10 11 14 20 27 28 35
+    ENTERO <lexema> (276) 36
+    CAD <lexema> (277) 26
+    SUMA (278) 29
+    REST (279) 30 33
+    MULT (280) 31
+    DIVI (281) 32
+    UMINUS (282)
+    OR (283) 42
+    AND (284) 41
+    LE (285) 40
+    LT (286) 39
+    GE (287) 38
+    GT (288) 37
+
+
+No terminales con las reglas donde aparecen
+
+    $accept (34)
+        on left: 0
+    program (35)
+        on left: 2
+        on right: 0
+    $@1 (36)
+        on left: 1
+        on right: 2
+    declarations <codigo> (37)
+        on left: 4 6 7
+        on right: 2 4 6
+    $@2 (38)
+        on left: 3
+        on right: 4
+    $@3 (39)
+        on left: 5
+        on right: 6
+    identifier_list <codigo> (40)
+        on left: 8 9
+        on right: 4 6 9
+    identifier <codigo> (41)
+        on left: 10 11
+        on right: 8 9
+    statement_list <codigo> (42)
+        on left: 12 13
+        on right: 2 12 15
+    statement <codigo> (43)
+        on left: 14 15 16 17 18 19 20 21 22
+        on right: 12 16 17 18 19 20
+    print_list <codigo> (44)
+        on left: 23 24
+        on right: 21 24
+    print_item <codigo> (45)
+        on left: 25 26
+        on right: 23 24
+    read_list <codigo> (46)
+        on left: 27 28
+        on right: 22 28
+    expression <codigo> (47)
+        on left: 29 30 31 32 33 34 35 36
+        on right: 11 14 16 17 18 20 25 29 30 31 32 33 34 37 38 39 40 43
+    relational <codigo> (48)
+        on left: 37 38 39 40 41 42 43
+        on right: 19 20 41 42
+
+
+Estado 0
+
+    0 $accept: . program $end
+
+    $default  reduce usando la regla 1 ($@1)
+
+    program  ir al estado 1
+    $@1      ir al estado 2
+
+
+Estado 1
+
+    0 $accept: program . $end
+
+    $end  desplazar e ir al estado 3
+
+
+Estado 2
+
+    2 program: $@1 . IDEN PARI PARD LLAVI declarations statement_list LLAVD
+
+    IDEN  desplazar e ir al estado 4
+
+
+Estado 3
+
+    0 $accept: program $end .
+
+    $default  aceptar
+
+
+Estado 4
+
+    2 program: $@1 IDEN . PARI PARD LLAVI declarations statement_list LLAVD
+
+    PARI  desplazar e ir al estado 5
+
+
+Estado 5
+
+    2 program: $@1 IDEN PARI . PARD LLAVI declarations statement_list LLAVD
+
+    PARD  desplazar e ir al estado 6
+
+
+Estado 6
+
+    2 program: $@1 IDEN PARI PARD . LLAVI declarations statement_list LLAVD
+
+    LLAVI  desplazar e ir al estado 7
+
+
+Estado 7
+
+    2 program: $@1 IDEN PARI PARD LLAVI . declarations statement_list LLAVD
+
+    $default  reduce usando la regla 7 (declarations)
+
+    declarations  ir al estado 8
+
+
+Estado 8
+
+    2 program: $@1 IDEN PARI PARD LLAVI declarations . statement_list LLAVD
+    4 declarations: declarations . VAR $@2 identifier_list PYCO
+    6             | declarations . CONST $@3 identifier_list PYCO
+
+    VAR    desplazar e ir al estado 9
+    CONST  desplazar e ir al estado 10
+
+    $default  reduce usando la regla 13 (statement_list)
+
+    statement_list  ir al estado 11
+
+
+Estado 9
+
+    4 declarations: declarations VAR . $@2 identifier_list PYCO
+
+    $default  reduce usando la regla 3 ($@2)
+
+    $@2  ir al estado 12
+
+
+Estado 10
+
+    6 declarations: declarations CONST . $@3 identifier_list PYCO
+
+    $default  reduce usando la regla 5 ($@3)
+
+    $@3  ir al estado 13
+
+
+Estado 11
+
+    2 program: $@1 IDEN PARI PARD LLAVI declarations statement_list . LLAVD
+   12 statement_list: statement_list . statement
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    LLAVD  desplazar e ir al estado 21
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 23
+
+
+Estado 12
+
+    4 declarations: declarations VAR $@2 . identifier_list PYCO
+
+    IDEN  desplazar e ir al estado 24
+
+    identifier_list  ir al estado 25
+    identifier       ir al estado 26
+
+
+Estado 13
+
+    6 declarations: declarations CONST $@3 . identifier_list PYCO
+
+    IDEN  desplazar e ir al estado 24
+
+    identifier_list  ir al estado 27
+    identifier       ir al estado 26
+
+
+Estado 14
+
+   18 statement: WHILE . PARI expression PARD statement
+
+    PARI  desplazar e ir al estado 28
+
+
+Estado 15
+
+   19 statement: DO . statement WHILE PARI relational PARD PYCO
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 29
+
+
+Estado 16
+
+   20 statement: FOR . PARI IDEN ASIG expression TO expression PYCO relational PARD statement
+
+    PARI  desplazar e ir al estado 30
+
+
+Estado 17
+
+   16 statement: IF . PARI expression PARD statement ELSE statement
+   17          | IF . PARI expression PARD statement
+
+    PARI  desplazar e ir al estado 31
+
+
+Estado 18
+
+   21 statement: PRINT . PARI print_list PARD PYCO
+
+    PARI  desplazar e ir al estado 32
+
+
+Estado 19
+
+   22 statement: READ . PARI read_list PARD PYCO
+
+    PARI  desplazar e ir al estado 33
+
+
+Estado 20
+
+   15 statement: LLAVI . statement_list LLAVD
+
+    $default  reduce usando la regla 13 (statement_list)
+
+    statement_list  ir al estado 34
+
+
+Estado 21
+
+    2 program: $@1 IDEN PARI PARD LLAVI declarations statement_list LLAVD .
+
+    $default  reduce usando la regla 2 (program)
+
+
+Estado 22
+
+   14 statement: IDEN . ASIG expression PYCO
+
+    ASIG  desplazar e ir al estado 35
+
+
+Estado 23
+
+   12 statement_list: statement_list statement .
+
+    $default  reduce usando la regla 12 (statement_list)
+
+
+Estado 24
+
+   10 identifier: IDEN .
+   11           | IDEN . ASIG expression
+
+    ASIG  desplazar e ir al estado 36
+
+    $default  reduce usando la regla 10 (identifier)
+
+
+Estado 25
+
+    4 declarations: declarations VAR $@2 identifier_list . PYCO
+    9 identifier_list: identifier_list . COMA identifier
+
+    PYCO  desplazar e ir al estado 37
+    COMA  desplazar e ir al estado 38
+
+
+Estado 26
+
+    8 identifier_list: identifier .
+
+    $default  reduce usando la regla 8 (identifier_list)
+
+
+Estado 27
+
+    6 declarations: declarations CONST $@3 identifier_list . PYCO
+    9 identifier_list: identifier_list . COMA identifier
+
+    PYCO  desplazar e ir al estado 39
+    COMA  desplazar e ir al estado 38
+
+
+Estado 28
+
+   18 statement: WHILE PARI . expression PARD statement
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 44
+
+
+Estado 29
+
+   19 statement: DO statement . WHILE PARI relational PARD PYCO
+
+    WHILE  desplazar e ir al estado 45
+
+
+Estado 30
+
+   20 statement: FOR PARI . IDEN ASIG expression TO expression PYCO relational PARD statement
+
+    IDEN  desplazar e ir al estado 46
+
+
+Estado 31
+
+   16 statement: IF PARI . expression PARD statement ELSE statement
+   17          | IF PARI . expression PARD statement
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 47
+
+
+Estado 32
+
+   21 statement: PRINT PARI . print_list PARD PYCO
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    CAD     desplazar e ir al estado 48
+    REST    desplazar e ir al estado 43
+
+    print_list  ir al estado 49
+    print_item  ir al estado 50
+    expression  ir al estado 51
+
+
+Estado 33
+
+   22 statement: READ PARI . read_list PARD PYCO
+
+    IDEN  desplazar e ir al estado 52
+
+    read_list  ir al estado 53
+
+
+Estado 34
+
+   12 statement_list: statement_list . statement
+   15 statement: LLAVI statement_list . LLAVD
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    LLAVD  desplazar e ir al estado 54
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 23
+
+
+Estado 35
+
+   14 statement: IDEN ASIG . expression PYCO
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 55
+
+
+Estado 36
+
+   11 identifier: IDEN ASIG . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 56
+
+
+Estado 37
+
+    4 declarations: declarations VAR $@2 identifier_list PYCO .
+
+    $default  reduce usando la regla 4 (declarations)
+
+
+Estado 38
+
+    9 identifier_list: identifier_list COMA . identifier
+
+    IDEN  desplazar e ir al estado 24
+
+    identifier  ir al estado 57
+
+
+Estado 39
+
+    6 declarations: declarations CONST $@3 identifier_list PYCO .
+
+    $default  reduce usando la regla 6 (declarations)
+
+
+Estado 40
+
+   34 expression: PARI . expression PARD
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 58
+
+
+Estado 41
+
+   35 expression: IDEN .
+
+    $default  reduce usando la regla 35 (expression)
+
+
+Estado 42
+
+   36 expression: ENTERO .
+
+    $default  reduce usando la regla 36 (expression)
+
+
+Estado 43
+
+   33 expression: REST . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 59
+
+
+Estado 44
+
+   18 statement: WHILE PARI expression . PARD statement
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    PARD  desplazar e ir al estado 60
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 45
+
+   19 statement: DO statement WHILE . PARI relational PARD PYCO
+
+    PARI  desplazar e ir al estado 65
+
+
+Estado 46
+
+   20 statement: FOR PARI IDEN . ASIG expression TO expression PYCO relational PARD statement
+
+    ASIG  desplazar e ir al estado 66
+
+
+Estado 47
+
+   16 statement: IF PARI expression . PARD statement ELSE statement
+   17          | IF PARI expression . PARD statement
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    PARD  desplazar e ir al estado 67
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 48
+
+   26 print_item: CAD .
+
+    $default  reduce usando la regla 26 (print_item)
+
+
+Estado 49
+
+   21 statement: PRINT PARI print_list . PARD PYCO
+   24 print_list: print_list . COMA print_item
+
+    PARD  desplazar e ir al estado 68
+    COMA  desplazar e ir al estado 69
+
+
+Estado 50
+
+   23 print_list: print_item .
+
+    $default  reduce usando la regla 23 (print_list)
+
+
+Estado 51
+
+   25 print_item: expression .
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 25 (print_item)
+
+
+Estado 52
+
+   27 read_list: IDEN .
+
+    $default  reduce usando la regla 27 (read_list)
+
+
+Estado 53
+
+   22 statement: READ PARI read_list . PARD PYCO
+   28 read_list: read_list . COMA IDEN
+
+    PARD  desplazar e ir al estado 70
+    COMA  desplazar e ir al estado 71
+
+
+Estado 54
+
+   15 statement: LLAVI statement_list LLAVD .
+
+    $default  reduce usando la regla 15 (statement)
+
+
+Estado 55
+
+   14 statement: IDEN ASIG expression . PYCO
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    PYCO  desplazar e ir al estado 72
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 56
+
+   11 identifier: IDEN ASIG expression .
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 11 (identifier)
+
+
+Estado 57
+
+    9 identifier_list: identifier_list COMA identifier .
+
+    $default  reduce usando la regla 9 (identifier_list)
+
+
+Estado 58
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   34           | PARI expression . PARD
+
+    PARD  desplazar e ir al estado 73
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 59
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   33           | REST expression .
+
+    $default  reduce usando la regla 33 (expression)
+
+
+Estado 60
+
+   18 statement: WHILE PARI expression PARD . statement
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 74
+
+
+Estado 61
+
+   29 expression: expression SUMA . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 75
+
+
+Estado 62
+
+   30 expression: expression REST . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 76
+
+
+Estado 63
+
+   31 expression: expression MULT . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 77
+
+
+Estado 64
+
+   32 expression: expression DIVI . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 78
+
+
+Estado 65
+
+   19 statement: DO statement WHILE PARI . relational PARD PYCO
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 79
+    relational  ir al estado 80
+
+
+Estado 66
+
+   20 statement: FOR PARI IDEN ASIG . expression TO expression PYCO relational PARD statement
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 81
+
+
+Estado 67
+
+   16 statement: IF PARI expression PARD . statement ELSE statement
+   17          | IF PARI expression PARD . statement
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 82
+
+
+Estado 68
+
+   21 statement: PRINT PARI print_list PARD . PYCO
+
+    PYCO  desplazar e ir al estado 83
+
+
+Estado 69
+
+   24 print_list: print_list COMA . print_item
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    CAD     desplazar e ir al estado 48
+    REST    desplazar e ir al estado 43
+
+    print_item  ir al estado 84
+    expression  ir al estado 51
+
+
+Estado 70
+
+   22 statement: READ PARI read_list PARD . PYCO
+
+    PYCO  desplazar e ir al estado 85
+
+
+Estado 71
+
+   28 read_list: read_list COMA . IDEN
+
+    IDEN  desplazar e ir al estado 86
+
+
+Estado 72
+
+   14 statement: IDEN ASIG expression PYCO .
+
+    $default  reduce usando la regla 14 (statement)
+
+
+Estado 73
+
+   34 expression: PARI expression PARD .
+
+    $default  reduce usando la regla 34 (expression)
+
+
+Estado 74
+
+   18 statement: WHILE PARI expression PARD statement .
+
+    $default  reduce usando la regla 18 (statement)
+
+
+Estado 75
+
+   29 expression: expression . SUMA expression
+   29           | expression SUMA expression .
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 29 (expression)
+
+
+Estado 76
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   30           | expression REST expression .
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 30 (expression)
+
+
+Estado 77
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   31           | expression MULT expression .
+   32           | expression . DIVI expression
+
+    $default  reduce usando la regla 31 (expression)
+
+
+Estado 78
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   32           | expression DIVI expression .
+
+    $default  reduce usando la regla 32 (expression)
+
+
+Estado 79
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   37 relational: expression . GT expression
+   38           | expression . GE expression
+   39           | expression . LT expression
+   40           | expression . LE expression
+   43           | expression .
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+    LE    desplazar e ir al estado 87
+    LT    desplazar e ir al estado 88
+    GE    desplazar e ir al estado 89
+    GT    desplazar e ir al estado 90
+
+    $default  reduce usando la regla 43 (relational)
+
+
+Estado 80
+
+   19 statement: DO statement WHILE PARI relational . PARD PYCO
+   41 relational: relational . AND relational
+   42           | relational . OR relational
+
+    PARD  desplazar e ir al estado 91
+    OR    desplazar e ir al estado 92
+    AND   desplazar e ir al estado 93
+
+
+Estado 81
+
+   20 statement: FOR PARI IDEN ASIG expression . TO expression PYCO relational PARD statement
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    TO    desplazar e ir al estado 94
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 82
+
+   16 statement: IF PARI expression PARD statement . ELSE statement
+   17          | IF PARI expression PARD statement .
+
+    ELSE  desplazar e ir al estado 95
+
+    ELSE      [reduce usando la regla 17 (statement)]
+    $default  reduce usando la regla 17 (statement)
+
+
+Estado 83
+
+   21 statement: PRINT PARI print_list PARD PYCO .
+
+    $default  reduce usando la regla 21 (statement)
+
+
+Estado 84
+
+   24 print_list: print_list COMA print_item .
+
+    $default  reduce usando la regla 24 (print_list)
+
+
+Estado 85
+
+   22 statement: READ PARI read_list PARD PYCO .
+
+    $default  reduce usando la regla 22 (statement)
+
+
+Estado 86
+
+   28 read_list: read_list COMA IDEN .
+
+    $default  reduce usando la regla 28 (read_list)
+
+
+Estado 87
+
+   40 relational: expression LE . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 96
+
+
+Estado 88
+
+   39 relational: expression LT . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 97
+
+
+Estado 89
+
+   38 relational: expression GE . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 98
+
+
+Estado 90
+
+   37 relational: expression GT . expression
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 99
+
+
+Estado 91
+
+   19 statement: DO statement WHILE PARI relational PARD . PYCO
+
+    PYCO  desplazar e ir al estado 100
+
+
+Estado 92
+
+   42 relational: relational OR . relational
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 79
+    relational  ir al estado 101
+
+
+Estado 93
+
+   41 relational: relational AND . relational
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 79
+    relational  ir al estado 102
+
+
+Estado 94
+
+   20 statement: FOR PARI IDEN ASIG expression TO . expression PYCO relational PARD statement
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 103
+
+
+Estado 95
+
+   16 statement: IF PARI expression PARD statement ELSE . statement
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 104
+
+
+Estado 96
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   40 relational: expression LE expression .
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 40 (relational)
+
+
+Estado 97
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   39 relational: expression LT expression .
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 39 (relational)
+
+
+Estado 98
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   38 relational: expression GE expression .
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 38 (relational)
+
+
+Estado 99
+
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+   37 relational: expression GT expression .
+
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+    $default  reduce usando la regla 37 (relational)
+
+
+Estado 100
+
+   19 statement: DO statement WHILE PARI relational PARD PYCO .
+
+    $default  reduce usando la regla 19 (statement)
+
+
+Estado 101
+
+   41 relational: relational . AND relational
+   42           | relational . OR relational
+   42           | relational OR relational .
+
+    $default  reduce usando la regla 42 (relational)
+
+
+Estado 102
+
+   41 relational: relational . AND relational
+   41           | relational AND relational .
+   42           | relational . OR relational
+
+    $default  reduce usando la regla 41 (relational)
+
+
+Estado 103
+
+   20 statement: FOR PARI IDEN ASIG expression TO expression . PYCO relational PARD statement
+   29 expression: expression . SUMA expression
+   30           | expression . REST expression
+   31           | expression . MULT expression
+   32           | expression . DIVI expression
+
+    PYCO  desplazar e ir al estado 105
+    SUMA  desplazar e ir al estado 61
+    REST  desplazar e ir al estado 62
+    MULT  desplazar e ir al estado 63
+    DIVI  desplazar e ir al estado 64
+
+
+Estado 104
+
+   16 statement: IF PARI expression PARD statement ELSE statement .
+
+    $default  reduce usando la regla 16 (statement)
+
+
+Estado 105
+
+   20 statement: FOR PARI IDEN ASIG expression TO expression PYCO . relational PARD statement
+
+    PARI    desplazar e ir al estado 40
+    IDEN    desplazar e ir al estado 41
+    ENTERO  desplazar e ir al estado 42
+    REST    desplazar e ir al estado 43
+
+    expression  ir al estado 79
+    relational  ir al estado 106
+
+
+Estado 106
+
+   20 statement: FOR PARI IDEN ASIG expression TO expression PYCO relational . PARD statement
+   41 relational: relational . AND relational
+   42           | relational . OR relational
+
+    PARD  desplazar e ir al estado 107
+    OR    desplazar e ir al estado 92
+    AND   desplazar e ir al estado 93
+
+
+Estado 107
+
+   20 statement: FOR PARI IDEN ASIG expression TO expression PYCO relational PARD . statement
+
+    WHILE  desplazar e ir al estado 14
+    DO     desplazar e ir al estado 15
+    FOR    desplazar e ir al estado 16
+    IF     desplazar e ir al estado 17
+    PRINT  desplazar e ir al estado 18
+    READ   desplazar e ir al estado 19
+    LLAVI  desplazar e ir al estado 20
+    IDEN   desplazar e ir al estado 22
+
+    statement  ir al estado 108
+
+
+Estado 108
+
+   20 statement: FOR PARI IDEN ASIG expression TO expression PYCO relational PARD statement .
+
+    $default  reduce usando la regla 20 (statement)
